@@ -8,10 +8,6 @@ const Students: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [newStudent, setNewStudent] = useState({ fullName: '', phoneNumber: '', balance: 0, status: 'Faol' });
 
-  useEffect(() => {
-    loadStudents();
-  }, []);
-
   const loadStudents = async () => {
     try {
       const data = await studentsService.getStudents();
@@ -22,6 +18,11 @@ const Students: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional data fetch on mount
+    loadStudents();
+  }, []);
 
   const handleCreateStudent = async (e: React.FormEvent) => {
     e.preventDefault();

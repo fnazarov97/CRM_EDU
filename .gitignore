@@ -1,0 +1,25 @@
+# .NET build artifacts
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+logs/
+*.log
+
+# Node
+node_modules/
+dist/
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -8,10 +8,6 @@ const Leads: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [newLead, setNewLead] = useState({ fullName: '', phoneNumber: '', source: '', notes: '', status: 'Yangi' });
 
-  useEffect(() => {
-    loadLeads();
-  }, []);
-
   const loadLeads = async () => {
     try {
       const data = await leadsService.getLeads();
@@ -22,6 +18,11 @@ const Leads: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional data fetch on mount
+    loadLeads();
+  }, []);
 
   const handleCreateLead = async (e: React.FormEvent) => {
     e.preventDefault();

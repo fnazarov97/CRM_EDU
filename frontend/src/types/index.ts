@@ -48,16 +48,37 @@ export interface Group {
   id: string;
   name: string;
   courseId: string;
+  courseTitle: string;
   teacherId: string;
+  teacherName: string;
   schedule: string;
   maxStudents: number;
   currentStudents: number;
   status: string;
 }
 
+export interface Teacher {
+  id: string;
+  fullName: string;
+  phoneNumber: string;
+  specialization: string;
+  hourlyRate: number;
+  status: string;
+}
+
+export interface Session {
+  id: string;
+  groupId: string;
+  groupName: string;
+  date: string;
+  topic: string;
+  homework?: string;
+}
+
 export interface Invoice {
   id: string;
   studentId: string;
+  studentName: string;
   amount: number;
   paidAmount: number;
   remainingAmount: number;

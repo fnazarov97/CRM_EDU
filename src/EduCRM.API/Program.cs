@@ -1,3 +1,4 @@
+using EduCRM.API.Middleware;
 using EduCRM.Application.Common.Interfaces;
 using EduCRM.Application.Common.Behaviors;
 using EduCRM.Infrastructure.Persistence;
@@ -32,12 +33,13 @@ builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
-// MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+// MediatR (handlers live in the Application assembly)
+var applicationAssembly = typeof(EduCRM.Application.Common.Interfaces.IApplicationDbContext).Assembly;
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-// FluentValidation
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+// FluentValidation (validators live in the Application assembly)
+builder.Services.AddValidatorsFromAssembly(applicationAssembly);
 
 // JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("Jwt");
@@ -107,11 +109,14 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Ensure database is created
+// Ensure database is created and seeded
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<CrmDbContext>();
     context.Database.EnsureCreated();
+
+    var passwordHasher = scope.ServiceProvider.GetRequiredService<IPasswordHasher>();
+    await DbSeeder.SeedAsync(context, passwordHasher);
 }
 
 // Middleware
@@ -122,6 +127,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSerilogRequestLogging();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseCors("AllowFrontend");
 
