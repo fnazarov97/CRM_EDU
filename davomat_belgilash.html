@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Davomat - EduCRM Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed": "#85f8c4",
+                        "outline": "#737686",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-container": "#82f5c1",
+                        "tertiary": "#784b00",
+                        "primary": "#004ac6",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#ffeedd",
+                        "tertiary-container": "#996100",
+                        "on-secondary-fixed": "#002114",
+                        "secondary": "#006c4a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface-variant": "#434655",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00714e",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed-dim": "#68dba9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Custom radio styling for attendance toggles */
+        .attendance-toggle input:checked + label {
+            background-color: var(--tw-bg-opacity);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface shadow-sm flex flex-col p-6 hidden md:flex">
+<div class="mb-8">
+<h1 class="font-title-lg text-title-lg font-bold text-primary">EduCRM Pro</h1>
+<p class="text-label-md text-on-surface-variant">Boshqaruv tizimi</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Boshqaruv paneli
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">person_search</span> Lidlar
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">school</span> O'quvchilar
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">menu_book</span> Kurslar
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">group</span> Guruhlar
+            </a>
+<!-- Active State: Davomat -->
+<a class="flex items-center gap-3 p-3 text-primary bg-surface-container-high rounded-lg font-title-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span> Davomat
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">payments</span> To'lovlar
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Hisobotlar
+            </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">settings</span> Sozlamalar
+            </a>
+</nav>
+<button class="mt-auto flex items-center justify-center gap-2 bg-primary-container text-white p-3 rounded-xl font-title-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span> Yangi qo'shish
+        </button>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-8 bg-surface shadow-sm fixed top-0 left-0 md:left-[260px] right-0 z-10">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full w-80">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full" placeholder="Qidiruv..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 bg-surface-container-low px-4 py-1.5 rounded-lg text-primary font-body-md">
+                Filial tanlash <span class="material-symbols-outlined">expand_more</span>
+</button>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">apps</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly education administrator in a well-lit office. The photo has a bright, airy aesthetic with clean lines and soft daylight filtering in from a window. The administrator wears a smart navy blue blazer over a crisp white shirt, representing a professional and approachable brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwX_FT8TwqYZYBQAS7kKP0DUi8vqtgS3zmjYxH1p6SrzSzGXBpXwax7RX6nuz7df88a5qEV1RM_zxJxWg9xmMyWHjOIp1u8_vraoFr95wT1O0ZVTRMiR0ZkiRdMfALhNOJPESp-FtDYbKKproVql2uGCzy8QM0Z_PhnGPRoTIUfL9dxG7WvP2NVegK7MW3QkSLswX3uGwxEegSIsO5Ek16r6MfnitGjO8VzwLmLBYauaSi-7YhYwXwCKiUxUkdVUfEWS8Wkse-0TU"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 px-4 md:px-8 ml-0 md:ml-[260px] min-h-screen">
+<!-- Header & Filters Section (Bento Inspired) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+<div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-surface-container flex flex-col justify-center">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Kunlik Davomat</h2>
+<p class="text-body-md text-on-surface-variant">O'quvchilarning darsga qatnashishini belgilang va hisobotlarni yangilang.</p>
+</div>
+<div class="bg-primary text-white p-6 rounded-2xl shadow-md flex flex-col justify-center">
+<div class="flex justify-between items-center">
+<span class="text-label-md opacity-80 uppercase tracking-wider">Bugun</span>
+<span class="material-symbols-outlined">event</span>
+</div>
+<div class="mt-2">
+<p class="font-title-lg text-title-lg">24-Sentabr, 2024</p>
+<p class="text-body-md opacity-90">Seshanba • 14:30</p>
+</div>
+</div>
+</div>
+<!-- Filters Strip -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-surface-container flex flex-wrap items-center gap-4 mb-6">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-outline mb-1">Guruhni tanlang</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Front-end Development (A1)</option>
+<option>Graphic Design (G2)</option>
+<option>IELTS Standard (I3)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<label class="block text-label-md text-outline mb-1">Sana</label>
+<input class="w-full md:w-auto bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="date" value="2024-09-24"/>
+</div>
+<div class="flex items-end h-full pt-5">
+<button class="bg-surface-container-high text-primary px-6 py-2 rounded-lg font-title-md flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">filter_alt</span> Filtr
+                </button>
+</div>
+</div>
+<!-- Attendance List -->
+<div class="bg-white rounded-2xl shadow-sm border border-surface-container overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-surface-container">
+<tr>
+<th class="px-6 py-4 text-label-md text-outline font-semibold uppercase tracking-wider">O'quvchi</th>
+<th class="px-6 py-4 text-label-md text-outline font-semibold uppercase tracking-wider text-center">Status</th>
+<th class="px-6 py-4 text-label-md text-outline font-semibold uppercase tracking-wider">Izoh</th>
+<th class="px-6 py-4 text-label-md text-outline font-semibold uppercase tracking-wider text-right">Balans</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Student Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary font-bold">
+                                        AZ
+                                    </div>
+<div>
+<p class="font-title-md text-on-surface">Abduvohidov Zohid</p>
+<p class="text-label-md text-on-surface-variant">ID: 84920</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center items-center gap-1 bg-surface-container-low p-1 rounded-full w-fit mx-auto">
+<input checked="" class="hidden peer/p" id="att_1_p" name="att_1" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/p:bg-secondary peer-checked/p:text-white text-on-surface-variant hover:bg-surface-variant" for="att_1_p">Keldi</label>
+<input class="hidden peer/l" id="att_1_l" name="att_1" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/l:bg-tertiary peer-checked/l:text-white text-on-surface-variant hover:bg-surface-variant" for="att_1_l">Kechikdi</label>
+<input class="hidden peer/a" id="att_1_a" name="att_1" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/a:bg-error peer-checked/a:text-white text-on-surface-variant hover:bg-surface-variant" for="att_1_a">Kelmadi</label>
+</div>
+</td>
+<td class="px-6 py-4">
+<input class="w-full bg-transparent border-b border-transparent focus:border-primary border-dashed py-1 text-body-md outline-none transition-colors group-hover:border-outline-variant" placeholder="Izoh qoldirish..." type="text"/>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-label-md font-bold rounded-full">+1,200,000</span>
+</td>
+</tr>
+<!-- Student Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary font-bold">
+                                        NM
+                                    </div>
+<div>
+<p class="font-title-md text-on-surface">Nazarova Madina</p>
+<p class="text-label-md text-on-surface-variant">ID: 84925</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center items-center gap-1 bg-surface-container-low p-1 rounded-full w-fit mx-auto">
+<input class="hidden peer/p" id="att_2_p" name="att_2" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/p:bg-secondary peer-checked/p:text-white text-on-surface-variant hover:bg-surface-variant" for="att_2_p">Keldi</label>
+<input checked="" class="hidden peer/l" id="att_2_l" name="att_2" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/l:bg-tertiary peer-checked/l:text-white text-on-surface-variant hover:bg-surface-variant" for="att_2_l">Kechikdi</label>
+<input class="hidden peer/a" id="att_2_a" name="att_2" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/a:bg-error peer-checked/a:text-white text-on-surface-variant hover:bg-surface-variant" for="att_2_a">Kelmadi</label>
+</div>
+</td>
+<td class="px-6 py-4">
+<input class="w-full bg-transparent border-b border-primary border-dashed py-1 text-body-md outline-none transition-colors" type="text" value="15 daqiqa"/>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-error/10 text-error text-label-md font-bold rounded-full">-45,000</span>
+</td>
+</tr>
+<!-- Student Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-error-container/10 flex items-center justify-center text-error font-bold">
+                                        KR
+                                    </div>
+<div>
+<p class="font-title-md text-on-surface">Karimov Rustam</p>
+<p class="text-label-md text-on-surface-variant">ID: 84932</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center items-center gap-1 bg-surface-container-low p-1 rounded-full w-fit mx-auto">
+<input class="hidden peer/p" id="att_3_p" name="att_3" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/p:bg-secondary peer-checked/p:text-white text-on-surface-variant hover:bg-surface-variant" for="att_3_p">Keldi</label>
+<input class="hidden peer/l" id="att_3_l" name="att_3" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/l:bg-tertiary peer-checked/l:text-white text-on-surface-variant hover:bg-surface-variant" for="att_3_l">Kechikdi</label>
+<input checked="" class="hidden peer/a" id="att_3_a" name="att_3" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/a:bg-error peer-checked/a:text-white text-on-surface-variant hover:bg-surface-variant" for="att_3_a">Kelmadi</label>
+</div>
+</td>
+<td class="px-6 py-4">
+<input class="w-full bg-transparent border-b border-transparent focus:border-primary border-dashed py-1 text-body-md outline-none transition-colors group-hover:border-outline-variant" placeholder="Izoh qoldirish..." type="text"/>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-label-md font-bold rounded-full">0</span>
+</td>
+</tr>
+<!-- Student Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-outline-variant/10 flex items-center justify-center text-outline font-bold">
+                                        SN
+                                    </div>
+<div>
+<p class="font-title-md text-on-surface">Saidov Nigora</p>
+<p class="text-label-md text-on-surface-variant">ID: 84940</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center items-center gap-1 bg-surface-container-low p-1 rounded-full w-fit mx-auto">
+<input class="hidden peer/p" id="att_4_p" name="att_4" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/p:bg-secondary peer-checked/p:text-white text-on-surface-variant hover:bg-surface-variant" for="att_4_p">Keldi</label>
+<input class="hidden peer/l" id="att_4_l" name="att_4" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/l:bg-tertiary peer-checked/l:text-white text-on-surface-variant hover:bg-surface-variant" for="att_4_l">Kechikdi</label>
+<input class="hidden peer/a" id="att_4_a" name="att_4" type="radio"/>
+<label class="px-4 py-1.5 rounded-full text-label-md font-medium cursor-pointer transition-all peer-checked/a:bg-error peer-checked/a:text-white text-on-surface-variant hover:bg-surface-variant" for="att_4_a">Kelmadi</label>
+</div>
+</td>
+<td class="px-6 py-4">
+<input class="w-full bg-transparent border-b border-transparent focus:border-primary border-dashed py-1 text-body-md outline-none transition-colors group-hover:border-outline-variant" placeholder="Izoh qoldirish..." type="text"/>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-label-md font-bold rounded-full">+450,000</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Action -->
+<div class="p-6 bg-surface-container-lowest border-t border-surface-container flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-label-md text-on-surface-variant">Keldi: 21</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="text-label-md text-on-surface-variant">Kelmadi: 3</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="text-label-md text-on-surface-variant">Kechikdi: 1</span>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-8 py-3 rounded-xl border border-outline-variant text-on-surface-variant font-title-md hover:bg-surface-container-low transition-colors">
+                        Bekor qilish
+                    </button>
+<button class="flex-1 md:flex-none px-8 py-3 rounded-xl bg-primary text-white font-title-md shadow-lg shadow-primary/20 active:scale-95 transition-all" onclick="saveSuccess()">
+                        Saqlash
+                    </button>
+</div>
+</div>
+</div>
+<!-- Attendance Stats (Mini Bento) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-surface-container">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">trending_up</span>
+<span class="text-label-md text-secondary font-bold">+5%</span>
+</div>
+<p class="text-display-lg font-display-lg text-on-surface">92%</p>
+<p class="text-label-md text-on-surface-variant">Oylik o'rtacha davomat</p>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-surface-container">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-error p-2 bg-error/10 rounded-lg">warning</span>
+</div>
+<p class="text-display-lg font-display-lg text-on-surface">4</p>
+<p class="text-label-md text-on-surface-variant">Qarzdor o'quvchilar</p>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-surface-container lg:col-span-2">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-title-md text-on-surface">Davomat Grafigi</h3>
+<span class="text-label-md text-on-surface-variant">Oxirgi 7 kun</span>
+</div>
+<div class="flex items-end justify-between h-16 gap-2">
+<div class="w-full bg-primary/20 rounded-t-sm h-1/2"></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-3/4"></div>
+<div class="w-full bg-primary/30 rounded-t-sm h-2/3"></div>
+<div class="w-full bg-primary/60 rounded-t-sm h-full"></div>
+<div class="w-full bg-primary/50 rounded-t-sm h-4/5"></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-2/3"></div>
+<div class="w-full bg-primary rounded-t-sm h-[90%]"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Toast (Hidden by default) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full shadow-xl flex items-center gap-3 opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4" id="success-toast">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="text-body-md">Davomat muvaffaqiyatli saqlandi!</span>
+</div>
+<script>
+        function saveSuccess() {
+            const toast = document.getElementById('success-toast');
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+
+        // Simple Mobile Sidebar Toggle (Interaction)
+        document.querySelector('button.md\\:hidden').addEventListener('click', () => {
+            alert('Mobil menyu keyingi yangilanishda qo\'shiladi.');
+        });
+    </script>
+</body></html>

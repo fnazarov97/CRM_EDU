@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+<html lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCRM Pro - O'quvchilar Boshqaruvi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed": "#85f8c4",
+                        "outline": "#737686",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-container": "#82f5c1",
+                        "tertiary": "#784b00",
+                        "primary": "#004ac6",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#ffeedd",
+                        "tertiary-container": "#996100",
+                        "on-secondary-fixed": "#002114",
+                        "secondary": "#006c4a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface-variant": "#434655",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00714e",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed-dim": "#68dba9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c3c6d7; border-radius: 10px; }
+        .data-table-container { scrollbar-gutter: stable; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface shadow-sm flex flex-col p-unit-gutter z-50">
+<div class="mb-8 flex items-center gap-3 px-2">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="font-title-lg text-title-lg font-bold text-primary">EduCRM Pro</h1>
+<p class="text-[11px] text-on-surface-variant leading-none">Boshqaruv tizimi</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Items Mapping from JSON -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">dashboard</span>
+<span class="font-body-md text-body-md">Boshqaruv paneli</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">person_search</span>
+<span class="font-body-md text-body-md">Lidlar</span>
+</a>
+<!-- ACTIVE TAB: O'quvchilar -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-surface-container-high rounded-lg font-title-md transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-body-md text-body-md font-bold">O'quvchilar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">menu_book</span>
+<span class="font-body-md text-body-md">Kurslar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">group</span>
+<span class="font-body-md text-body-md">Guruhlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<span class="font-body-md text-body-md">Davomat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">payments</span>
+<span class="font-body-md text-body-md">To'lovlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-outline">analytics</span>
+<span class="font-body-md text-body-md">Hisobotlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg group mt-auto" href="#">
+<span class="material-symbols-outlined text-outline">settings</span>
+<span class="font-body-md text-body-md">Sozlamalar</span>
+</a>
+</nav>
+<div class="mt-6 pt-6 border-t border-surface-container">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-title-md flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-md">
+<span class="material-symbols-outlined">add_circle</span>
+                Yangi qo'shish
+            </button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="ml-[260px] min-h-screen flex flex-col">
+<!-- Top Nav Bar -->
+<header class="h-16 flex items-center justify-between px-margin-desktop bg-surface shadow-sm sticky top-0 z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-body-md focus:ring-2 focus:ring-primary" placeholder="Ism yoki ID bo'yicha qidirish..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 bg-surface-container text-primary font-bold rounded-lg text-body-md flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+                    Filial tanlash
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a modern office administrator in a minimalist setting. The lighting is soft and corporate, utilizing the slate and blue color palette of the CRM. High-resolution digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbXsUuFUxiK9cRlBf0YwJ-5gup52SIlRQe4WjhXOnFL7DsxRXbxUHuOHqduuoM5YeZE5gzKClNqRyCtlMghR8T2DHwPeaPPSet5x_88PZ_GZzdDTP6Cz86u-Suuy8t-M1BgU30Yuyyk9tqmwcGK8vkp8wooVB9uuAhx9MlWP_fZOjAm51JdV_mrCZYYzSwwEuSkb4KTyxzO89FkwQuT39cLdQk-bM0iOr47CxXeaiGDx809HFQQW-ggbefZONLxOF_rI388I8KgaE"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="p-margin-desktop flex-1">
+<!-- Page Header -->
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">O'quvchilar ro'yxati</h2>
+<p class="text-on-surface-variant font-body-md">Jami 1,248 ta o'quvchi tizimda ro'yxatdan o'tgan</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant font-title-md rounded-lg flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">download</span>
+                        Eksport
+                    </button>
+<button class="px-4 py-2 bg-primary text-on-primary font-title-md rounded-lg flex items-center gap-2 shadow-sm hover:brightness-110 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">person_add</span>
+                        O'quvchi qo'shish
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats Summary (Bento Lite) -->
+<div class="grid grid-cols-4 gap-gutter mb-8">
+<div class="bg-surface p-5 rounded-xl shadow-sm border-l-4 border-primary">
+<div class="flex justify-between items-start mb-2">
+<span class="text-on-surface-variant font-label-md uppercase tracking-wider">Faol o'quvchilar</span>
+<span class="material-symbols-outlined text-primary">groups</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">1,054</div>
+<div class="flex items-center gap-1 text-[12px] text-emerald-600 font-medium mt-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +12% o'tgan oydan
+                    </div>
+</div>
+<div class="bg-surface p-5 rounded-xl shadow-sm border-l-4 border-tertiary-container">
+<div class="flex justify-between items-start mb-2">
+<span class="text-on-surface-variant font-label-md uppercase tracking-wider">Yangi lidlar</span>
+<span class="material-symbols-outlined text-tertiary">how_to_reg</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">84</div>
+<div class="flex items-center gap-1 text-[12px] text-emerald-600 font-medium mt-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        +5% o'tgan haftadan
+                    </div>
+</div>
+<div class="bg-surface p-5 rounded-xl shadow-sm border-l-4 border-error">
+<div class="flex justify-between items-start mb-2">
+<span class="text-on-surface-variant font-label-md uppercase tracking-wider">Qarzdorlar</span>
+<span class="material-symbols-outlined text-error">payments</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">42</div>
+<div class="flex items-center gap-1 text-[12px] text-error font-medium mt-1">
+<span class="material-symbols-outlined text-sm">warning</span>
+                        3.2 mln so'm jami
+                    </div>
+</div>
+<div class="bg-surface p-5 rounded-xl shadow-sm border-l-4 border-secondary">
+<div class="flex justify-between items-start mb-2">
+<span class="text-on-surface-variant font-label-md uppercase tracking-wider">Bitirganlar</span>
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+</div>
+<div class="text-headline-md font-bold text-on-surface">312</div>
+<div class="flex items-center gap-1 text-[12px] text-on-surface-variant font-medium mt-1">
+                        Joriy yilda
+                    </div>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface-container-low p-4 rounded-xl mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-on-surface-variant mb-1 ml-1">Guruhni tanlang</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg text-body-md py-2 focus:ring-primary focus:border-primary">
+<option>Barcha guruhlar</option>
+<option>Elementary Morning (E-102)</option>
+<option>IELTS Rocket (I-405)</option>
+<option>General English (G-303)</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-on-surface-variant mb-1 ml-1">Kurs bo'yicha</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg text-body-md py-2 focus:ring-primary focus:border-primary">
+<option>Barcha kurslar</option>
+<option>Ingliz tili</option>
+<option>Matematika</option>
+<option>Dasturlash (Frontend)</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-on-surface-variant mb-1 ml-1">To'lov holati</label>
+<select class="w-full bg-surface border-outline-variant rounded-lg text-body-md py-2 focus:ring-primary focus:border-primary">
+<option>Barcha holatlar</option>
+<option>To'langan</option>
+<option>Qarzdorlik bor</option>
+<option>Muddat o'tgan</option>
+</select>
+</div>
+<div class="flex items-end h-full mt-4 sm:mt-0">
+<button class="p-2 text-primary hover:bg-primary-fixed rounded-lg transition-colors border border-primary">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="ml-2 text-on-surface-variant text-body-md font-medium hover:underline">Filtrni tozalash</button>
+</div>
+</div>
+<!-- Bulk Actions & Table Card -->
+<div class="bg-surface rounded-2xl shadow-sm overflow-hidden flex flex-col">
+<!-- Bulk Actions Subheader -->
+<div class="p-4 bg-surface border-b border-surface-container flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" id="selectAll" type="checkbox"/>
+<span class="text-body-md font-medium text-on-surface-variant">Tanlangan (0)</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 text-on-surface-variant text-body-md hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">sms</span>
+                                SMS yuborish
+                            </button>
+<button class="flex items-center gap-1 text-on-surface-variant text-body-md hover:text-primary transition-colors disabled:opacity-50 ml-4" disabled="">
+<span class="material-symbols-outlined text-[18px]">group_add</span>
+                                Guruhga qo'shish
+                            </button>
+</div>
+</div>
+<div class="text-on-surface-variant text-body-md">
+                        1-10 dan 1,248 ta
+                    </div>
+</div>
+<!-- Enterprise Data Table -->
+<div class="overflow-x-auto data-table-container">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low sticky top-0">
+<tr>
+<th class="p-4 w-10"></th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-surface-container">O'quvchi ismi</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-surface-container">ID raqami</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-surface-container">Faol guruh</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-surface-container">Balans</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-surface-container text-center">Status</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-surface-container text-right">Amallar</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="p-4"><input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center font-bold">
+                                            AA
+                                        </div>
+<div>
+<div class="font-title-md text-on-surface">Asadbek Abdullayev</div>
+<div class="text-label-md text-on-surface-variant">+998 90 123 45 67</div>
+</div>
+</div>
+</td>
+<td class="p-4 font-body-md text-on-surface-variant">#ST-8842</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-body-md text-on-surface">E-102 (Morning)</span>
+</td>
+<td class="p-4 font-title-md text-emerald-600">+150,000 UZS</td>
+<td class="p-4 text-center">
+<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-label-md font-bold rounded-full uppercase">Faol</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg" title="To'lov qo'shish">
+<span class="material-symbols-outlined">add_card</span>
+</button>
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-lg" title="Tahrirlash">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg" title="Profil">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="p-4"><input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center font-bold">
+                                            DN
+                                        </div>
+<div>
+<div class="font-title-md text-on-surface">Dilnoza Nurmatova</div>
+<div class="text-label-md text-on-surface-variant">+998 93 456 78 90</div>
+</div>
+</div>
+</td>
+<td class="p-4 font-body-md text-on-surface-variant">#ST-8891</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-body-md text-on-surface">I-405 (IELTS)</span>
+</td>
+<td class="p-4 font-title-md text-error">-420,000 UZS</td>
+<td class="p-4 text-center">
+<span class="px-3 py-1 bg-red-100 text-red-700 text-label-md font-bold rounded-full uppercase">Qarzdor</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg"><span class="material-symbols-outlined">add_card</span></button>
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-lg"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg"><span class="material-symbols-outlined">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="p-4"><input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center font-bold">
+                                            JS
+                                        </div>
+<div>
+<div class="font-title-md text-on-surface">Javohir Sobirov</div>
+<div class="text-label-md text-on-surface-variant">+998 94 999 88 77</div>
+</div>
+</div>
+</td>
+<td class="p-4 font-body-md text-on-surface-variant">#ST-9102</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-body-md text-on-surface">G-303 (Pre-Inter)</span>
+</td>
+<td class="p-4 font-title-md text-on-surface">0 UZS</td>
+<td class="p-4 text-center">
+<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-label-md font-bold rounded-full uppercase">Faol</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg"><span class="material-symbols-outlined">add_card</span></button>
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-lg"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg"><span class="material-symbols-outlined">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 transition-colors group opacity-75">
+<td class="p-4"><input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-outline-variant/20 text-outline flex items-center justify-center font-bold">
+                                            KM
+                                        </div>
+<div>
+<div class="font-title-md text-on-surface">Kamola Mirzayeva</div>
+<div class="text-label-md text-on-surface-variant">+998 91 222 33 44</div>
+</div>
+</div>
+</td>
+<td class="p-4 font-body-md text-on-surface-variant">#ST-7721</td>
+<td class="p-4 text-on-surface-variant italic">Guruhsiz</td>
+<td class="p-4 font-title-md text-on-surface">0 UZS</td>
+<td class="p-4 text-center">
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-label-md font-bold rounded-full uppercase">Nofaol</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg"><span class="material-symbols-outlined">add_card</span></button>
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-lg"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg"><span class="material-symbols-outlined">visibility</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 bg-surface border-t border-surface-container flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-body-md text-on-surface-variant">Sahifada ko'rsatish:</span>
+<select class="bg-surface border-none text-body-md font-medium text-primary py-0 focus:ring-0">
+<option>10 ta</option>
+<option>25 ta</option>
+<option>50 ta</option>
+</select>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg hover:bg-surface-container-low text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary text-body-md font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-on-surface-variant text-body-md">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-on-surface-variant text-body-md">3</button>
+<span class="px-2">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-low text-on-surface-variant text-body-md">125</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-low text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Footer -->
+<footer class="h-12 flex items-center justify-between px-margin-desktop bg-surface border-t border-surface-container text-label-md text-on-surface-variant">
+<div>© 2024 EduCRM Pro Management Suite. Barcha huquqlar himoyalangan.</div>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Yordam</a>
+<a class="hover:text-primary transition-colors" href="#">Maxfiylik siyosati</a>
+<a class="hover:text-primary transition-colors" href="#">v2.4.0</a>
+</div>
+</footer>
+</div>
+<!-- Floating Action Button (for Mobile/Quick Add) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-50 md:hidden">
+<span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+</button>
+<script>
+        // Micro-interactions for table checkboxes
+        const selectAll = document.getElementById('selectAll');
+        const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+        const bulkCount = document.querySelector('.text-body-md.font-medium.text-on-surface-variant');
+        const bulkButtons = document.querySelectorAll('button[disabled]');
+
+        selectAll.addEventListener('change', (e) => {
+            checkboxes.forEach(cb => cb.checked = e.target.checked);
+            updateBulkCount();
+        });
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateBulkCount);
+        });
+
+        function updateBulkCount() {
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            bulkCount.textContent = `Tanlangan (${checkedCount})`;
+            
+            bulkButtons.forEach(btn => {
+                if (checkedCount > 0) {
+                    btn.removeAttribute('disabled');
+                    btn.classList.remove('opacity-50');
+                } else {
+                    btn.setAttribute('disabled', 'true');
+                    btn.classList.add('opacity-50');
+                }
+            });
+        }
+    </script>
+</body></html>

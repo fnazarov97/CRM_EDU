@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCRM Pro - To'lovlar va Hisob-fakturalar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed": "#85f8c4",
+                        "outline": "#737686",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-container": "#82f5c1",
+                        "tertiary": "#784b00",
+                        "primary": "#004ac6",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#ffeedd",
+                        "tertiary-container": "#996100",
+                        "on-secondary-fixed": "#002114",
+                        "secondary": "#006c4a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface-variant": "#434655",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00714e",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed-dim": "#68dba9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+        .debtor-row { background-color: rgba(186, 26, 26, 0.05); }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface shadow-sm flex flex-col p-6 z-50">
+<div class="mb-10">
+<h1 class="font-title-lg text-title-lg font-bold text-primary">EduCRM Pro</h1>
+<p class="text-on-surface-variant font-label-md">Boshqaruv tizimi</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Boshqaruv paneli</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-body-md">Lidlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md">O'quvchilar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-body-md">Kurslar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Guruhlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-md">Davomat</span>
+</a>
+<!-- Active Tab: To'lovlar -->
+<a class="flex items-center gap-3 p-3 text-primary bg-surface-container-high rounded-lg font-title-md shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-body-md">To'lovlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Hisobotlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Sozlamalar</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/30">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 px-4 rounded-xl font-title-md hover:bg-primary-container transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined">add_circle</span>
+<span>Yangi qo'shish</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="h-16 px-margin-desktop bg-surface flex justify-between items-center sticky top-0 z-40 shadow-sm">
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-2 rounded-full w-96 border border-outline-variant/20">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-full" placeholder="O'quvchi yoki to'lov ID bo'yicha qidirish..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-primary font-title-md">
+<span class="material-symbols-outlined">location_on</span>
+                    Filial tanlash
+                </button>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-fixed overflow-hidden ml-2">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female administrative manager with a friendly expression, set against a clean, corporate background with soft blue lighting to match the CRM interface aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYWxX7d3ME6ybz2-rM-flhUyLVX3L2aTjhtRTJNinG-lYGeaKOURBwwZmtI4IRRHz-BwF2gxAowx_k6MlzFryox373noFDt2coBuI8yOKhcylUinVAsfiaomLRLuJ8B4gcnbW7IoGVaqGAM9KLla01Wdd2Gj6XxG8r4uymysTNf7TYt7lcZHPh-xxHJn7C-2M-yCu9W1nw6CWiJzvZ4gbzn7suICP1utA-CLB3pBE48cTt5R4MY61Q2LzDeSY1wkcALtcG1Z2a1VM"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-gutter">
+<!-- Header & Summary Section -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">To'lovlar va Moliyaviy Holat</h2>
+<p class="text-on-surface-variant font-body-lg">Markazning bugungi kundagi barcha tranzaksiyalari va qarzdorliklar nazorati.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 border border-outline text-on-surface px-5 py-2.5 rounded-xl font-title-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">download</span>
+                        Eksport (Excel)
+                    </button>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-2.5 rounded-xl font-title-md hover:shadow-lg transition-all active:scale-95" onclick="document.getElementById('paymentModal').classList.remove('hidden')">
+<span class="material-symbols-outlined">add</span>
+                        To'lov qabul qilish
+                    </button>
+</div>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/10 group hover:border-primary/30 transition-all">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-primary-fixed-dim rounded-xl text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<span class="text-secondary font-title-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                        </span>
+</div>
+<p class="text-on-surface-variant font-label-md uppercase tracking-wider">Umumiy tushum</p>
+<h3 class="text-headline-md font-bold text-on-surface">42,500,000 UZS</h3>
+</div>
+<div class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/10 group hover:border-error/30 transition-all debtor-row">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-error-container rounded-xl text-error">
+<span class="material-symbols-outlined">priority_high</span>
+</div>
+<span class="text-error font-title-md">14 o'quvchi</span>
+</div>
+<p class="text-on-surface-variant font-label-md uppercase tracking-wider">Qarzdorlik</p>
+<h3 class="text-headline-md font-bold text-error">8,420,000 UZS</h3>
+</div>
+<div class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/10 group hover:border-primary/30 transition-all">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-secondary-container rounded-xl text-secondary">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<span class="text-on-surface-variant font-label-md">Oxirgi 30 kun</span>
+</div>
+<p class="text-on-surface-variant font-label-md uppercase tracking-wider">Naqd pulsiz to'lov</p>
+<h3 class="text-headline-md font-bold text-on-surface">28,900,000 UZS</h3>
+</div>
+<div class="bg-surface rounded-2xl p-6 shadow-sm border border-outline-variant/10 group hover:border-primary/30 transition-all">
+<div class="flex items-center justify-between mb-4">
+<div class="p-3 bg-surface-container-high rounded-xl text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-on-surface-variant font-label-md">45 tranzaksiya</span>
+</div>
+<p class="text-on-surface-variant font-label-md uppercase tracking-wider">Bugungi tushum</p>
+<h3 class="text-headline-md font-bold text-on-surface">3,200,000 UZS</h3>
+</div>
+</div>
+<!-- Main Table Section -->
+<div class="bg-surface rounded-2xl shadow-sm border border-outline-variant/10 overflow-hidden">
+<!-- Filters Bar -->
+<div class="p-4 border-b border-outline-variant/30 flex flex-wrap gap-4 items-center justify-between bg-surface-container-lowest">
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-lg bg-surface-container-high text-primary font-title-md">Barchasi</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-title-md border border-error/20 text-error">Qarzdorlar</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-title-md">To'langan</button>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center gap-2 border border-outline-variant px-3 py-2 rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">calendar_month</span>
+<select class="bg-transparent border-none focus:ring-0 text-body-md py-0">
+<option>Ushbu oy</option>
+<option>O'tgan oy</option>
+<option>Barcha vaqt</option>
+</select>
+</div>
+<div class="flex items-center gap-2 border border-outline-variant px-3 py-2 rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">filter_list</span>
+<span class="text-body-md">Filtrlar</span>
+</div>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20">O'quvchi</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20">Sana</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20">Summa</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20">Usul</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20">Holat</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20">Kurs</th>
+<th class="p-4 font-title-md text-on-surface-variant border-b border-outline-variant/20 text-right">Amallar</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1: Paid -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold">AS</div>
+<div>
+<p class="font-title-md text-on-surface">Abdurahmon Sodiqov</p>
+<p class="text-label-md text-on-surface-variant">ID: #40521</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-body-md text-on-surface-variant">24.05.2024</td>
+<td class="p-4 font-bold text-on-surface">1,200,000 UZS</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-sm">credit_card</span> Card (Click)
+                                    </div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-label-md rounded-full font-bold">To'langan</span>
+</td>
+<td class="p-4 text-body-md text-on-surface-variant">Grafik Dizayn</td>
+<td class="p-4 text-right">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Debt (Qarzdor) -->
+<tr class="debtor-row hover:bg-error-container/20 transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-error-container text-error flex items-center justify-center font-bold">JN</div>
+<div>
+<p class="font-title-md text-on-surface">Jasur Normurodov</p>
+<p class="text-label-md text-on-surface-variant">ID: #40522</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-body-md text-on-surface-variant">20.05.2024</td>
+<td class="p-4 font-bold text-error">850,000 UZS</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-body-md text-on-surface-variant italic">
+                                        Kutilmoqda...
+                                    </div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-error/10 text-error text-label-md rounded-full font-bold">Qarzdor</span>
+</td>
+<td class="p-4 text-body-md text-on-surface-variant">Ingliz tili (IELTS)</td>
+<td class="p-4 text-right">
+<button class="bg-error text-white px-3 py-1.5 rounded-lg text-label-md hover:bg-error/90 transition-colors">To'lash</button>
+</td>
+</tr>
+<!-- Row 3: Paid (Cash) -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold">MX</div>
+<div>
+<p class="font-title-md text-on-surface">Malika Xojieva</p>
+<p class="text-label-md text-on-surface-variant">ID: #40523</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-body-md text-on-surface-variant">23.05.2024</td>
+<td class="p-4 font-bold text-on-surface">2,000,000 UZS</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-sm">payments</span> Naqd
+                                    </div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 bg-secondary/10 text-secondary text-label-md rounded-full font-bold">To'langan</span>
+</td>
+<td class="p-4 text-body-md text-on-surface-variant">Dasturlash (Fullstack)</td>
+<td class="p-4 text-right">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-outline-variant/20 flex items-center justify-between">
+<p class="text-body-md text-on-surface-variant">Jami 124 tadan 1-10 ko'rsatilmoqda</p>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary">1</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors">2</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container-low transition-colors">3</button>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-low">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Payment Modal (Hidden by default) -->
+<div class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center hidden" id="paymentModal">
+<div class="bg-surface w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+<div class="p-6 border-b border-outline-variant/30 flex justify-between items-center">
+<h3 class="font-headline-md text-on-surface">To'lov qabul qilish</h3>
+<button class="p-2 hover:bg-surface-container-low rounded-full" onclick="document.getElementById('paymentModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-8 space-y-6">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">O'quvchini tanlang</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 text-body-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none appearance-none">
+<option>Jasur Normurodov (Qarz: 850,000 UZS)</option>
+<option>Aziza Karimova</option>
+<option>Sardor Ergashev</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Summa (UZS)</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 text-body-lg font-bold text-primary focus:ring-2 focus:ring-primary outline-none" placeholder="0.00" type="number"/>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Sana</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 text-body-lg focus:ring-2 focus:ring-primary outline-none" type="date"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">To'lov usuli</label>
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center justify-center p-4 border-2 border-primary bg-primary/5 rounded-xl gap-2 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="text-label-md font-bold text-primary">Naqd</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant/20 hover:border-primary/50 rounded-xl gap-2 transition-all">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="text-label-md font-bold text-on-surface-variant">Plastik</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant/20 hover:border-primary/50 rounded-xl gap-2 transition-all">
+<span class="material-symbols-outlined">touch_app</span>
+<span class="text-label-md font-bold text-on-surface-variant">Click/Payme</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Izoh (ixtiyoriy)</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl px-4 py-3 text-body-md focus:ring-2 focus:ring-primary outline-none h-24 resize-none" placeholder="Qo'shimcha ma'lumotlar..."></textarea>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low flex gap-4">
+<button class="flex-1 py-3 text-on-surface-variant font-title-md hover:bg-surface-variant rounded-xl transition-colors" onclick="document.getElementById('paymentModal').classList.add('hidden')">Bekor qilish</button>
+<button class="flex-2 bg-primary text-on-primary px-10 py-3 rounded-xl font-title-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all">Tasdiqlash</button>
+</div>
+</div>
+</div>
+<!-- Background Decorative Animation -->
+<div class="fixed bottom-0 right-0 p-gutter pointer-events-none opacity-20">
+
+</div>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Pulse effect or other micro-interactions can go here
+            });
+        });
+
+        // Close modal on escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('paymentModal').classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>

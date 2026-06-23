@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="light" lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCRM Pro - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c3c6d7",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-fixed": "#85f8c4",
+                        "outline": "#737686",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-container": "#82f5c1",
+                        "tertiary": "#784b00",
+                        "primary": "#004ac6",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#ffeedd",
+                        "tertiary-container": "#996100",
+                        "on-secondary-fixed": "#002114",
+                        "secondary": "#006c4a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-surface-variant": "#434655",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed": "#00174b",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#00714e",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-background": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-bright": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface": "#f8f9ff",
+                        "primary-container": "#2563eb",
+                        "secondary-fixed-dim": "#68dba9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stats-card-shadow {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[260px] flex flex-col p-unit-gutter shadow-sm bg-surface dark:bg-surface-container z-50">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed">EduCRM Pro</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Boshqaruv tizimi</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active: Boshqaruv paneli -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed bg-surface-container-high dark:bg-surface-container-highest rounded-lg font-title-md transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Boshqaruv paneli</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span>Lidlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">school</span>
+<span>O'quvchilar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Kurslar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Guruhlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span>Davomat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>To'lovlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Hisobotlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 rounded-lg font-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Sozlamalar</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 rounded-xl font-title-md shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+<span>Yangi qo'shish</span>
+</button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-[260px] min-h-screen">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center h-16 px-margin-desktop bg-surface dark:bg-surface-container shadow-sm sticky top-0 z-40">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Qidiruv..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg text-primary font-title-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">account_balance</span>
+<span>Filial tanlash</span>
+</button>
+<div class="flex items-center gap-4 border-l border-outline-variant pl-6">
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="flex items-center gap-3 ml-2 cursor-pointer group">
+<div class="text-right">
+<p class="font-title-md leading-none">Ali Valiyev</p>
+<p class="font-label-md text-on-surface-variant">Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover group-hover:scale-105 transition-transform" data-alt="Professional studio portrait of a corporate administrator in a modern office environment. The person is wearing a neat white shirt, smiling subtly, with soft, directional lighting against a blurred background of a sleek tech office with glass walls and minimalist furniture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz-MOiZc_DzLLNOgEA3EEIgQbGAvq1eHVFCX5NcREqoiHjebxh-YJuGKtW5R6QfxDG4JpbXzK1VJ-mefYXGT8CVJGhIBWmPEHqNmURT01FJ5UOm7Ng69D12Y8OlTNPezPMvHTIg8IAMumoZJ0wQdlA-O4rjpz0njWRX0rYPJBeKoWZJ4MEMlZKp-7eVjZmQJ2ku77OmoZelgzRPJKMmUne8VD_WO8vwOZUZmBUGtku5cxFufhnDiOcRe1MY3pm9umsdIaMI3c55hU"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-margin-desktop space-y-gutter">
+<!-- Header Title -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Xush kelibsiz!</h2>
+<p class="text-on-surface-variant font-body-lg">O'quv markazingiz bugungi holati haqida qisqacha ma'lumot.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">calendar_month</span>
+<span>Oxirgi 30 kun</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">download</span>
+<span>Hisobot yuklash</span>
+</button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Active Students -->
+<div class="bg-surface p-6 rounded-xl stats-card-shadow border border-surface-container-high hover:border-primary-container transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-primary-container/10 text-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+<span class="flex items-center text-secondary font-label-md bg-secondary-container/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +12%
+                        </span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Faol o'quvchilar</p>
+<h3 class="font-display-lg text-display-lg mt-1">1,248</h3>
+</div>
+<!-- Total Leads -->
+<div class="bg-surface p-6 rounded-xl stats-card-shadow border border-surface-container-high hover:border-primary-container transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-secondary-container/10 text-secondary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_add</span>
+</div>
+<span class="flex items-center text-secondary font-label-md bg-secondary-container/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +5%
+                        </span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Yangi lidlar (oy)</p>
+<h3 class="font-display-lg text-display-lg mt-1">482</h3>
+</div>
+<!-- Revenue -->
+<div class="bg-surface p-6 rounded-xl stats-card-shadow border border-surface-container-high hover:border-primary-container transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-tertiary-container/10 text-tertiary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="flex items-center text-error font-label-md bg-error-container/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+                            -2%
+                        </span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Tushumlar (oy)</p>
+<h3 class="font-display-lg text-display-lg mt-1">124.5 M</h3>
+</div>
+<!-- Attendance -->
+<div class="bg-surface p-6 rounded-xl stats-card-shadow border border-surface-container-high hover:border-primary-container transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-primary-container/10 text-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">done_all</span>
+</div>
+<span class="flex items-center text-secondary font-label-md bg-secondary-container/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                            Yaxshi
+                        </span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Davomat ko'rsatkichi</p>
+<h3 class="font-display-lg text-display-lg mt-1">94.2%</h3>
+</div>
+</div>
+<!-- Dashboard Content Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Revenue Trend Chart (Placeholder Layout) -->
+<div class="col-span-12 lg:col-span-8 bg-surface rounded-xl p-6 stats-card-shadow border border-surface-container-high">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="font-title-lg text-title-lg">Tushumlar grafigi</h4>
+<p class="text-on-surface-variant font-label-md">Oxirgi 6 oylik dinamika</p>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-label-md">Kurs to'lovi</span>
+</div>
+<div class="flex items-center gap-2 ml-4">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-label-md">Boshqa</span>
+</div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-4 px-2">
+<!-- Simulated Chart Bars -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full bg-surface-container rounded-t-lg h-32 group-hover:bg-primary/20 transition-colors relative">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-24"></div>
+</div>
+<span class="mt-4 text-label-md text-on-surface-variant">Yan</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full bg-surface-container rounded-t-lg h-40 group-hover:bg-primary/20 transition-colors relative">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-32"></div>
+</div>
+<span class="mt-4 text-label-md text-on-surface-variant">Fev</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full bg-surface-container rounded-t-lg h-48 group-hover:bg-primary/20 transition-colors relative">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-42"></div>
+</div>
+<span class="mt-4 text-label-md text-on-surface-variant">Mar</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full bg-surface-container rounded-t-lg h-56 group-hover:bg-primary/20 transition-colors relative">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-48"></div>
+</div>
+<span class="mt-4 text-label-md text-on-surface-variant">Apr</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full bg-surface-container rounded-t-lg h-60 group-hover:bg-primary/20 transition-colors relative">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-54"></div>
+</div>
+<span class="mt-4 text-label-md text-on-surface-variant">May</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full bg-surface-container rounded-t-lg h-52 group-hover:bg-primary/20 transition-colors relative">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-t-lg h-40"></div>
+</div>
+<span class="mt-4 text-label-md text-on-surface-variant">Iyun</span>
+</div>
+</div>
+</div>
+<!-- Leads by Status (Donut Chart Style) -->
+<div class="col-span-12 lg:col-span-4 bg-surface rounded-xl p-6 stats-card-shadow border border-surface-container-high">
+<h4 class="font-title-lg text-title-lg mb-1">Lidlar statusi</h4>
+<p class="text-on-surface-variant font-label-md mb-8">Hozirgi bosqichdagi lidlar soni</p>
+<div class="relative w-48 h-48 mx-auto mb-8">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-surface-container" cx="18" cy="18" fill="none" r="16" stroke-width="4"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="45, 100" stroke-width="4"></circle>
+<circle class="stroke-secondary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="30, 100" stroke-dashoffset="-45" stroke-width="4"></circle>
+<circle class="stroke-tertiary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="25, 100" stroke-dashoffset="-75" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-headline-lg">482</span>
+<span class="text-label-md text-on-surface-variant">Jami</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span>Yangi</span>
+</div>
+<span class="font-bold">216</span>
+</div>
+<div class="flex justify-between items-center text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span>Suhbatda</span>
+</div>
+<span class="font-bold">144</span>
+</div>
+<div class="flex justify-between items-center text-body-md">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span>Kutilmoqda</span>
+</div>
+<span class="font-bold">122</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity & Notifications -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<div class="bg-surface rounded-xl stats-card-shadow border border-surface-container-high overflow-hidden">
+<div class="p-6 border-b border-surface-container flex justify-between items-center">
+<h4 class="font-title-lg text-title-lg">So'nggi harakatlar</h4>
+<button class="text-primary font-title-md hover:underline">Hammasini ko'rish</button>
+</div>
+<div class="divide-y divide-surface-container">
+<!-- Payment Activity -->
+<div class="p-6 flex items-center gap-4 hover:bg-surface-container-lowest transition-colors">
+<div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md">To'lov qabul qilindi</p>
+<p class="text-body-md text-on-surface-variant">Asrorov Dilshod — "Web Design" kursi uchun</p>
+</div>
+<div class="text-right">
+<p class="font-title-md text-secondary">+1,200,000 so'm</p>
+<p class="text-label-md text-on-surface-variant">Bugun, 14:20</p>
+</div>
+</div>
+<!-- New Lead Activity -->
+<div class="p-6 flex items-center gap-4 hover:bg-surface-container-lowest transition-colors">
+<div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md">Yangi lid qo'shildi</p>
+<p class="text-body-md text-on-surface-variant">Nigora Akramova — Telegram orqali</p>
+</div>
+<div class="text-right">
+<span class="px-2 py-1 rounded bg-blue-50 text-blue-700 font-label-md">Yangi</span>
+<p class="text-label-md text-on-surface-variant mt-1">Bugun, 12:45</p>
+</div>
+</div>
+<!-- Attendance Activity -->
+<div class="p-6 flex items-center gap-4 hover:bg-surface-container-lowest transition-colors">
+<div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex-1">
+<p class="font-title-md">Dars yakunlandi</p>
+<p class="text-body-md text-on-surface-variant">Matematika-3 guruhi, O'qituvchi: Sardor M.</p>
+</div>
+<div class="text-right">
+<p class="font-title-md">12/15 o'quvchi</p>
+<p class="text-label-md text-on-surface-variant">Bugun, 10:30</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notifications Column -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Notifications Card -->
+<div class="bg-surface rounded-xl stats-card-shadow border border-surface-container-high overflow-hidden">
+<div class="p-6 border-b border-surface-container flex justify-between items-center bg-primary-container text-on-primary-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">campaign</span>
+<h4 class="font-title-lg text-title-lg">Bildirishnomalar</h4>
+</div>
+<span class="bg-white/20 px-2 py-1 rounded-full text-label-md">5 yangi</span>
+</div>
+<div class="p-4 space-y-4">
+<!-- Low Attendance Alert -->
+<div class="p-4 rounded-lg bg-error-container/10 border border-error-container/20 flex gap-4">
+<span class="material-symbols-outlined text-error shrink-0">error</span>
+<div>
+<p class="font-title-md text-error">Kam davomat</p>
+<p class="text-body-md text-on-surface-variant mt-1">Python Backend-2 guruhi davomati 60% dan past.</p>
+<button class="mt-2 text-primary font-label-md hover:underline">Tekshirish</button>
+</div>
+</div>
+<!-- Payment Overdue Alert -->
+<div class="p-4 rounded-lg bg-tertiary-container/10 border border-tertiary-container/20 flex gap-4">
+<span class="material-symbols-outlined text-tertiary shrink-0">pending_actions</span>
+<div>
+<p class="font-title-md text-tertiary">Qarzdorlik mavjud</p>
+<p class="text-body-md text-on-surface-variant mt-1">14 nafar o'quvchi to'lov muddatidan o'tib ketgan.</p>
+<button class="mt-2 text-primary font-label-md hover:underline">Ro'yxatni ko'rish</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Lessons Mini Grid -->
+<div class="bg-surface rounded-xl p-6 stats-card-shadow border border-surface-container-high">
+<h4 class="font-title-lg text-title-lg mb-4">Navbatdagi darslar</h4>
+<div class="space-y-4">
+<div class="flex gap-4 items-center">
+<div class="bg-surface-container p-3 rounded-lg text-center min-w-[60px]">
+<p class="font-bold text-headline-md leading-none">16</p>
+<p class="text-label-md uppercase">15:00</p>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-title-md truncate">English Pre-Int (Gr-42)</p>
+<p class="text-body-md text-on-surface-variant truncate">Xona: 3-auditoriya</p>
+</div>
+</div>
+<div class="flex gap-4 items-center">
+<div class="bg-surface-container p-3 rounded-lg text-center min-w-[60px]">
+<p class="font-bold text-headline-md leading-none">17</p>
+<p class="text-label-md uppercase">16:30</p>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-title-md truncate">Graphic Design (Gr-12)</p>
+<p class="text-body-md text-on-surface-variant truncate">Xona: Lab-1</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If we were handling real navigation, logic would go here
+            });
+        });
+        
+        // Add a subtle entrance animation for cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stats-card-shadow').forEach(card => {
+            card.classList.add('transition-all', 'duration-500', 'opacity-0', 'translate-y-4');
+            observer.observe(card);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCRM Pro - Lidlar Boshqaruvi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c3c6d7",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-fixed": "#85f8c4",
+                    "outline": "#737686",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#0053db",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary-container": "#eeefff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "secondary-container": "#82f5c1",
+                    "tertiary": "#784b00",
+                    "primary": "#004ac6",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-container": "#ffeedd",
+                    "tertiary-container": "#996100",
+                    "on-secondary-fixed": "#002114",
+                    "secondary": "#006c4a",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#434655",
+                    "background": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-low": "#eff4ff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00714e",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-bright": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#005137",
+                    "surface": "#f8f9ff",
+                    "primary-container": "#2563eb",
+                    "secondary-fixed-dim": "#68dba9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-[260px] flex flex-col p-unit-gutter shadow-sm bg-surface dark:bg-surface-container z-50">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed">EduCRM Pro</h1>
+<p class="text-[10px] uppercase tracking-wider text-outline font-bold">Boshqaruv tizimi</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto scrollbar-hide">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="font-body-md text-body-md">Boshqaruv paneli</span>
+</a>
+<!-- Active Navigation: Lidlar -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed bg-surface-container-high dark:bg-surface-container-highest rounded-lg font-title-md group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+<span class="font-title-md">Lidlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">school</span>
+<span class="font-body-md text-body-md">O'quvchilar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">menu_book</span>
+<span class="font-body-md text-body-md">Kurslar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">group</span>
+<span class="font-body-md text-body-md">Guruhlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">calendar_today</span>
+<span class="font-body-md text-body-md">Davomat</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">payments</span>
+<span class="font-body-md text-body-md">To'lovlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">analytics</span>
+<span class="font-body-md text-body-md">Hisobotlar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+<span class="font-body-md text-body-md">Sozlamalar</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/30">
+<button class="w-full bg-primary-container text-white py-3 rounded-xl flex items-center justify-center gap-2 font-title-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                Yangi qo'shish
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 px-margin-desktop bg-surface dark:bg-surface-container shadow-sm z-40">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-body-md focus:ring-2 focus:ring-primary" placeholder="Lidlar orasidan qidirish..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-1.5 rounded-full text-primary font-title-md cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span>Toshkent Filiali</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-low rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="Close up professional headshot of a friendly Uzbek male CRM administrator with short black hair and a professional suit, set against a blurred modern educational office background with soft daylighting and blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0oxDEGfyejAP4hHzCFkA6ydxRv4134T4AdnMZnwkJf8aZ3sBB621URr5x4k1npkqyV885Ua_y4bzIVext7OfBweGixcWBChNm2yISj22pCFusxuvKaomOfWKTlR8pPswFBKlU1J2KS0OswbCc56aI6Do2mRM5RPVzMNOedixAUKZTX5yAkM7YN-0X1g3SQlsRqgT7L6kjxXE8pf739E3R2X-xdYIOzx9TVh1lU4vA6pace4K4UDB_w9Fkcc75LsgkNr4OXJ8Xj2M"/>
+</div>
+</div>
+</header>
+<!-- Canvas Area -->
+<section class="flex-1 overflow-hidden flex flex-col p-8 gap-8">
+<!-- Page Header & Stats -->
+<div class="flex justify-between items-end">
+<div>
+<nav class="flex items-center gap-2 text-label-md text-outline mb-1">
+<span>Bosh sahifa</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Lidlar</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Lidlar Boshqaruvi</h2>
+</div>
+<div class="flex gap-4">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-1 min-w-[160px]">
+<span class="text-label-md text-outline">Jami lidlar</span>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-md font-bold text-primary">1,284</span>
+<span class="text-emerald-600 text-label-md font-bold flex items-center">+12%</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/20 flex flex-col gap-1 min-w-[160px]">
+<span class="text-label-md text-outline">Konversiya</span>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-md font-bold text-secondary">24.5%</span>
+<span class="text-red-500 text-label-md font-bold flex items-center">-2%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Filters & View Switcher -->
+<div class="flex flex-wrap items-center justify-between gap-4 bg-white p-3 rounded-2xl shadow-sm border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="relative">
+<select class="pl-10 pr-10 py-2 bg-surface-container-low border-none rounded-xl text-body-md focus:ring-1 focus:ring-primary appearance-none cursor-pointer">
+<option>Barcha kurslar</option>
+<option>Ingliz tili</option>
+<option>Matematika</option>
+<option>Dasturlash</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">book</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">expand_more</span>
+</div>
+<div class="relative">
+<select class="pl-10 pr-10 py-2 bg-surface-container-low border-none rounded-xl text-body-md focus:ring-1 focus:ring-primary appearance-none cursor-pointer">
+<option>Barcha menejerlar</option>
+<option>Ali Valiev</option>
+<option>Guli Karimova</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">badge</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">expand_more</span>
+</div>
+<div class="relative">
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl text-body-md focus:ring-1 focus:ring-primary cursor-pointer" type="date"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">calendar_today</span>
+</div>
+</div>
+<div class="flex items-center gap-2 p-1 bg-surface-container rounded-xl">
+<button class="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-white shadow-sm text-primary font-title-md transition-all">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+                        Kanban
+                    </button>
+<button class="flex items-center gap-2 px-4 py-1.5 rounded-lg text-outline font-title-md hover:text-on-surface-variant transition-all">
+<span class="material-symbols-outlined text-[18px]">list</span>
+                        Ro'yxat
+                    </button>
+</div>
+</div>
+<!-- Kanban Board -->
+<div class="flex-1 flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
+<!-- Column: Yangi -->
+<div class="flex flex-col gap-4 min-w-[320px] w-1/4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+<h3 class="font-title-md text-on-surface">Yangi</h3>
+<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">24</span>
+</div>
+<button class="p-1 hover:bg-surface-container rounded-md text-outline">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto scrollbar-hide pr-1">
+<!-- Card 1 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded">IELTS 7.0</span>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-surface-container rounded text-outline">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<h4 class="font-title-md text-on-surface mb-1">Azizbek G'ulomov</h4>
+<p class="text-body-md text-outline mb-4">+998 90 123 45 67</p>
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200 overflow-hidden" title="Menejer: Ali V.">
+<img class="w-full h-full object-cover" data-alt="A portrait photo of a professional education manager in their thirties, with dark hair and a warm, trustworthy expression, wearing a smart casual white shirt against a minimalist office background with soft, cool-toned lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUTiW4AnMRgK2YK6H4TQg8z_0XLm_lCunG_05w7Uw5Ayugo7GSHazgIp5qQ3Wgt0gC_6dI3UwRh7Fp_Lp_g3PzvjgTRuV4D_2cJ0Y9ffz0Czdbvp-G2bBlHusxgsn5wtZPIEf3qQLTh0aTqbdVj9025l29utQ2aull8muZ8Ppry7ggfhR2F4eS4bjUhZatXaDX8wEfBhhfcDx9ws92nQ0u2Su92jz-TrBjfE7VGSfRhEd4wU3jVO8PfbBvaUbw5M1TlpsZP4ft7AY"/>
+</div>
+</div>
+<div class="flex items-center gap-1 text-label-md text-outline">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>2 soat avval</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-purple-50 text-purple-600 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded">Python Intro</span>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-surface-container rounded text-outline">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<h4 class="font-title-md text-on-surface mb-1">Malika Orifova</h4>
+<p class="text-body-md text-outline mb-4">+998 99 987 65 43</p>
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
+<div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-outline">MO</div>
+<div class="flex items-center gap-1 text-label-md text-outline">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>1 kun avval</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Aloqada -->
+<div class="flex flex-col gap-4 min-w-[320px] w-1/4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
+<h3 class="font-title-md text-on-surface">Aloqada</h3>
+<span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">12</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto scrollbar-hide pr-1">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded">Mental Arifmetika</span>
+<button class="p-1 hover:bg-surface-container rounded text-outline">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<h4 class="font-title-md text-on-surface mb-1">Jasur Hamroyev</h4>
+<p class="text-body-md text-outline mb-4">+998 94 444 55 66</p>
+<div class="bg-surface-container-low p-2 rounded-lg mb-4 flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-amber-600 mt-0.5">chat_bubble</span>
+<p class="text-[11px] text-on-surface-variant italic">"Ertaga soat 14:00 da qayta qo'ng'iroq kutilmoqda..."</p>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a cheerful female administrative professional with a welcoming smile, wearing a modest hijab and professional attire, standing in a bright and airy modern office corridor, captured in high-key natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF0hTxaSahfQVnPaVhoUI1OAvkis3ovt3rC-736-_8MhiGnXsclb519EUqlcIwTPeoPfTRlFEfTwRME_Q3YQPVs35o6ySnIORG1aoI_jyxdXSsROacp7646rWXVI-m5-zRVwOw4b_V3W_dNVqS5iKfDqLj5uI6kLC9fiRC5W6z-Wkem89X-H-BWjzTTl9pRpJ5x6CucoI-cZFqU40s6jJfK71aZ6bU4OIOtzkAvF9FFVACTRPn-3OzulnZeliJCnsxhvZBb2NsCh8"/>
+</div>
+<div class="flex items-center gap-1 text-label-md text-amber-600 font-bold">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span>Bugun 14:00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Sinov darsida -->
+<div class="flex flex-col gap-4 min-w-[320px] w-1/4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
+<h3 class="font-title-md text-on-surface">Sinov darsida</h3>
+<span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded-full">8</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto scrollbar-hide pr-1">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/30 hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded">Web Design UI/UX</span>
+<button class="p-1 hover:bg-surface-container rounded text-outline">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<h4 class="font-title-md text-on-surface mb-1">Sardor Alimov</h4>
+<p class="text-body-md text-outline mb-4">+998 77 123 00 11</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<div class="flex items-center gap-1 text-[10px] bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+<span>24 Avgust, 18:30</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/20">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up of a focused male teacher in his late twenties, with neat hair and professional smart casual attire, in a modern tech-focused classroom setting with blurred computer monitors in the background, daytime natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXPH4PZsXMH-NsMlex_N7o-nlD49PDP2TbOd4Q8SQoCidZ_ZmS-SuEpoUgMKwkLLgXNpnhwEdK5W2cfGNBkfB1aao5YZPGAQXKr0FOI2kpwsaMQcs9MbUxKfbGkTeivd5OJE0IKgUVlWupPLsRXirsJfW6_nv0WVuG-sYKz7941UUBP5T-Ysfhs7ZPqEYaKYcWaTyy5ItPk-ocfrtITJ4du7aLU4u63o9u0QK9IWMz6dUplfurXSKFWBGS-F08C6VBdKXQnskd6eA"/>
+</div>
+<div class="text-label-md text-outline">
+                                    Xona: 204-B
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: O'quvchi bo'ldi -->
+<div class="flex flex-col gap-4 min-w-[320px] w-1/4">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+<h3 class="font-title-md text-on-surface">O'quvchi bo'ldi</h3>
+<span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full">142</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto scrollbar-hide pr-1 opacity-70">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-emerald-200">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded">Foundation</span>
+<span class="material-symbols-outlined text-emerald-500 text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="font-title-md text-on-surface mb-1">Madina Karamatova</h4>
+<p class="text-body-md text-outline">Konvertatsiya qilindi</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-[28px]">add</span>
+<span class="absolute right-full mr-4 bg-primary text-white px-4 py-2 rounded-xl text-title-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">Yangi Lid qo'shish</span>
+</button>
+<!-- Micro-interaction Script -->
+<script>
+        // Tab switching simulation
+        const viewTabs = document.querySelectorAll('.bg-surface-container button');
+        viewTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                viewTabs.forEach(t => {
+                    t.classList.remove('bg-white', 'shadow-sm', 'text-primary');
+                    t.classList.add('text-outline');
+                });
+                tab.classList.remove('text-outline');
+                tab.classList.add('bg-white', 'shadow-sm', 'text-primary');
+            });
+        });
+
+        // Simple horizontal scroll wheel enhancement
+        const kanbanBoard = document.querySelector('.overflow-x-auto');
+        kanbanBoard.addEventListener('wheel', (evt) => {
+            if (evt.deltaY !== 0) {
+                evt.preventDefault();
+                kanbanBoard.scrollLeft += evt.deltaY;
+            }
+        });
+    </script>
+</body></html>

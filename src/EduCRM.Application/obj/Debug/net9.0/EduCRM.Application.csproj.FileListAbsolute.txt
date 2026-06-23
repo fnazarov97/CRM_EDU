@@ -1,0 +1,15 @@
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.csproj.AssemblyReference.cache
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.AssemblyInfoInputs.cache
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.AssemblyInfo.cs
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.csproj.CoreCompileInputs.cache
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\bin\Debug\net9.0\EduCRM.Application.deps.json
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\bin\Debug\net9.0\EduCRM.Application.dll
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\bin\Debug\net9.0\EduCRM.Application.pdb
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\bin\Debug\net9.0\EduCRM.Domain.dll
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\bin\Debug\net9.0\EduCRM.Domain.pdb
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.A.BDF3C6D9.Up2Date
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.dll
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\refint\EduCRM.Application.dll
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\EduCRM.Application.pdb
+D:\Antigravity_projects\CRM_EDU\src\EduCRM.Application\obj\Debug\net9.0\ref\EduCRM.Application.dll

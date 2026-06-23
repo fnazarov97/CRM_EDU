@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html lang="uz"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduCRM Pro - Guruhlar Boshqaruvi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c3c6d7",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-fixed": "#85f8c4",
+                    "outline": "#737686",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#0053db",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary-container": "#eeefff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "secondary-container": "#82f5c1",
+                    "tertiary": "#784b00",
+                    "primary": "#004ac6",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-container": "#ffeedd",
+                    "tertiary-container": "#996100",
+                    "on-secondary-fixed": "#002114",
+                    "secondary": "#006c4a",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b4c5ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#434655",
+                    "background": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-low": "#eff4ff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00714e",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-bright": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#005137",
+                    "surface": "#f8f9ff",
+                    "primary-container": "#2563eb",
+                    "secondary-fixed-dim": "#68dba9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .schedule-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface shadow-sm flex flex-col p-6 z-50">
+<div class="mb-10">
+<h1 class="font-title-lg text-title-lg font-bold text-primary">EduCRM Pro</h1>
+<p class="text-label-md text-on-surface-variant opacity-70">Boshqaruv tizimi</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Nav Items mapped from JSON -->
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Boshqaruv paneli</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-body-md text-body-md">Lidlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md text-body-md">O'quvchilar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-body-md text-body-md">Kurslar</span>
+</a>
+<!-- Active State: Guruhlar -->
+<a class="flex items-center gap-3 p-3 text-primary bg-surface-container-high rounded-lg font-title-md transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-md text-body-md">Guruhlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-md text-body-md">Davomat</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">To'lovlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Hisobotlar</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Sozlamalar</span>
+</a>
+</nav>
+<button class="mt-auto w-full bg-primary text-on-primary py-3 rounded-xl font-title-md flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-md">
+<span class="material-symbols-outlined">add_circle</span>
+            Yangi qo'shish
+        </button>
+</aside>
+<!-- TopNavBar Integration -->
+<header class="fixed top-0 left-[260px] w-[calc(100%-260px)] h-16 bg-surface shadow-sm flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary" placeholder="Guruhlarni qidirish..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-title-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">balance</span>
+                Filial tanlash
+            </button>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<div class="flex items-center gap-3 border-l border-outline-variant pl-6">
+<div class="text-right">
+<p class="font-title-md text-on-surface">Admin</p>
+<p class="text-label-md text-on-surface-variant">Asosiy boshqaruvchi</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="Professional studio portrait of a corporate administrator in a modern office environment. Soft natural lighting, neutral grey background, clean and professional attire. High resolution, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGZlrseaTzhHSnpA8mQbY9fCOxAJtBBC87IOoSZ-dnnp1MmMDxhP4Omt9PURRM0J4C2xHFWZUYJtRO_Q769XL4Eruic1TeQxYiTZunMB-GbIH120Ad2ZcxVzBZqnV1vfMJF2nJqNYBqks-fLiZALaffE57GsyH_NGNYJ96xLtkKHTHKeuVharPPOAaAayJ5qhQrht7wqVDhBdV2Aj2Vk4v2-IB_nT0LTBvpR0_VEY4iit4keADvOAaq0PegH83rGNUCjkB6egYpMM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] pt-24 px-8 pb-12">
+<!-- Header Section with Stats -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Guruhlar Boshqaruvi</h2>
+<p class="text-body-lg text-on-surface-variant mt-1">Hozirda 24 ta faol guruh mavjud</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface p-4 rounded-xl shadow-sm flex items-center gap-4 min-w-[180px]">
+<div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Faol guruhlar</p>
+<p class="font-headline-md text-headline-md text-on-surface">24</p>
+</div>
+</div>
+<div class="bg-surface p-4 rounded-xl shadow-sm flex items-center gap-4 min-w-[180px]">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group_add</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Yig'ilmoqda</p>
+<p class="font-headline-md text-headline-md text-on-surface">7</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface p-4 rounded-xl shadow-sm mb-6 flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-on-surface-variant mb-1 ml-1">Kurs bo'yicha filter<!--"kurs"-->
+<select class="w-full bg-surface-container-low border-none rounded-lg text-body-md focus:ring-2 focus:ring-primary py-2 px-3">
+<option>Barcha kurslar</option>
+<option>English IELTS 7.0</option>
+<option>Front-end Development</option>
+<option>Grafik Dizayn</option>
+<option>Koreys tili (Topik)</option>
+</select>
+</label></div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-on-surface-variant mb-1 ml-1">O'qituvchi</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-body-md focus:ring-2 focus:ring-primary py-2 px-3">
+<option>Barcha o'qituvchilar</option>
+<option>Anvar Jumaboyev</option>
+<option>Malika Odilova</option>
+<option>Dostonbek Erkinov</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block text-label-md text-on-surface-variant mb-1 ml-1">Status</label>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="flex-1 py-1 text-label-md bg-surface text-primary shadow-sm rounded-md font-bold">Barchasi</button>
+<button class="flex-1 py-1 text-label-md text-on-surface-variant hover:text-primary transition-colors">Faol</button>
+<button class="flex-1 py-1 text-label-md text-on-surface-variant hover:text-primary transition-colors">Tugagan</button>
+</div>
+</div>
+<div class="pt-5">
+<button class="px-6 py-2 bg-primary-container text-on-primary-container rounded-lg font-title-md hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">filter_list</span>
+                    Filtrni qo'llash
+                </button>
+</div>
+</div>
+<!-- Groups Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Group Card 1 -->
+<div class="bg-surface rounded-2xl shadow-sm border border-transparent hover:border-primary-container transition-all overflow-hidden group">
+<div class="p-5 flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 text-[10px] font-bold uppercase tracking-wider">O'qish jarayonida</span>
+<span class="text-label-md text-on-surface-variant">#GR-2041</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors">IELTS Master - Batch 04</h3>
+<p class="text-body-md text-on-surface-variant">English Foundation + IELTS 7.0+</p>
+</div>
+<button class="p-2 text-outline hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Schedule Section -->
+<div class="bg-surface-container-low px-5 py-4 mx-4 rounded-xl border border-outline-variant/30 mb-4">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Dars jadvali</p>
+<p class="text-body-md font-bold text-on-surface">Du / Chor / Juma — 14:00 - 16:00</p>
+</div>
+</div>
+<div class="flex gap-1 justify-between">
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">DU</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">SE</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">CH</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">PA</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">JU</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">SH</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant text-error">YA</span>
+</div>
+</div>
+<div class="px-5 pb-5 grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="A portrait of a male teacher in his late 20s, wearing professional attire, holding a tablet, smiling warmly in a bright classroom setting. Professional photography, natural lighting, educational environment focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj8R8-Y0ObvaEL5cmxaMgpNfbOVxdBP4KbkCVUNd5pbKyDc5vcil9U7QeZrhxVQxBZCsmb8HEM5HeAOTQuM3bd1a5RpEVq-jH01Q8d3SpRsXF4w7DNUH7-RR3VVDgpr5ldyk2uIWHBj-sMMNQ1cDOUz96TGaH6Qh2-_vhpAqMcKhC5nPv016ACWVlBburbRZV6fKFSNLjHepygZ6dXBApvgUaxmgExLmS1YJ2qzo3r5Xs3Ip7doJNyD_QL7CswqDozsDO6tkSLGNU"/>
+<div>
+<p class="text-label-md text-on-surface-variant">O'qituvchi</p>
+<p class="text-body-md font-semibold text-on-surface truncate">A. Jumaboyev</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">meeting_room</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Xona</p>
+<p class="text-body-md font-semibold text-on-surface">Cambridge-12</p>
+</div>
+</div>
+</div>
+<div class="px-5 py-3 border-t border-outline-variant/30 flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span class="text-body-md font-bold">18/20</span>
+<span class="text-label-md">o'quvchi</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-300"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-400"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-500"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-primary-container text-white text-[8px] flex items-center justify-center font-bold">+15</div>
+</div>
+</div>
+</div>
+<!-- Group Card 2 (Recruitment) -->
+<div class="bg-surface rounded-2xl shadow-sm border border-transparent hover:border-primary-container transition-all overflow-hidden group">
+<div class="p-5 flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 text-[10px] font-bold uppercase tracking-wider">Yig'ilmoqda</span>
+<span class="text-label-md text-on-surface-variant">#GR-2045</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors">Python for Beginners</h3>
+<p class="text-body-md text-on-surface-variant">Backend Development Path</p>
+</div>
+<button class="p-2 text-outline hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-surface-container-low px-5 py-4 mx-4 rounded-xl border border-outline-variant/30 mb-4">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Dars jadvali</p>
+<p class="text-body-md font-bold text-on-surface">Se / Pay / Shan — 18:30 - 20:30</p>
+</div>
+</div>
+<div class="flex gap-1 justify-between">
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">DU</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">SE</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">CH</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">PA</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">JU</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">SH</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant text-error">YA</span>
+</div>
+</div>
+<div class="px-5 pb-5 grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="A portrait of a confident female software engineering instructor with short dark hair, wearing a professional blazer. Minimalist office background with soft diffused lighting, corporate and modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKd2wkTzbxdbUYoCs2jspz21AJHwz7v8o6flhjXMBbn8iqGD6MRsH4YgVr6U0QfY5ACM36GX8ZVcYaper2L4armGrg6fl7xO44iMlOWqWkQWL-Y-QEtKOuw2zpacyQngD4A2Bm0P7iZicvTM8voJgqAXTcVJJ4DL1HYaMNBRmqO1KJYldH1CDOXWAqmIZ25uClQItSerxfM8INrC62qjR2cZIc2BABQ2ZQawgqF-D0W-HRlp2lFy_zbvnCUcu7RdCHm9webZFbWHg"/>
+<div>
+<p class="text-label-md text-on-surface-variant">O'qituvchi</p>
+<p class="text-body-md font-semibold text-on-surface truncate">M. Odilova</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">meeting_room</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Xona</p>
+<p class="text-body-md font-semibold text-on-surface">Silicon-4</p>
+</div>
+</div>
+</div>
+<div class="px-5 py-3 border-t border-outline-variant/30 bg-surface-container-lowest">
+<div class="w-full bg-outline-variant/30 h-2 rounded-full mb-2">
+<div class="bg-blue-600 h-full rounded-full" style="width: 45%;"></div>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span class="text-body-md font-bold">9/20</span>
+<span class="text-label-md">o'quvchi</span>
+</div>
+<span class="text-label-md font-bold text-blue-600">45% to'lgan</span>
+</div>
+</div>
+</div>
+<!-- Group Card 3 (Finished) -->
+<div class="bg-surface rounded-2xl shadow-sm border border-transparent hover:border-primary-container transition-all overflow-hidden group opacity-80 hover:opacity-100">
+<div class="p-5 flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-on-surface-variant/10 text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Tugagan</span>
+<span class="text-label-md text-on-surface-variant">#GR-1988</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors">Graphic Design Pro</h3>
+<p class="text-body-md text-on-surface-variant">Adobe Creative Suite Mastery</p>
+</div>
+<button class="p-2 text-outline hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-surface-container-low px-5 py-4 mx-4 rounded-xl border border-outline-variant/30 mb-4 grayscale group-hover:grayscale-0 transition-all">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Yakunlangan sana</p>
+<p class="text-body-md font-bold text-on-surface">15 Dekabr, 2023</p>
+</div>
+</div>
+<div class="text-label-md text-on-surface-variant italic">Ushbu guruh barcha bosqichlarni muvaffaqiyatli yakunladi.</div>
+</div>
+<div class="px-5 pb-5 grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="A portrait of a male design mentor with stylish glasses and a creative vibe, wearing a casual polo shirt. Modern design studio background with artistic posters and soft lighting. Professional corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDylKGFYLOQ_16YIRO_q5OuuEa3P6APmnES7VNmQ_8DMk8O2Z0MFjrXT9ahobrAzXdBS_9Y24dsLev2x_XI0T8w4JCVLliwE1VwAJFA-lX1fwpWX5wbeSLHgXUM4_9U79624XejgUodMEsViHH5h2rNPDv5mCzQoeeNhc-c1W8RW7nYW4njvIqiFHgBUUiekh8VD4IUgmTM8_N7JWxhFWQs8FX7mlo0F1aOtCOHnKbwFpQKZZaux8ktd0NlhJNAIrH5h4Egxq9BsIg"/>
+<div>
+<p class="text-label-md text-on-surface-variant">O'qituvchi</p>
+<p class="text-body-md font-semibold text-on-surface truncate">D. Erkinov</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Natija</p>
+<p class="text-body-md font-semibold text-on-surface">14 bitiruvchi</p>
+</div>
+</div>
+</div>
+<div class="px-5 py-3 border-t border-outline-variant/30 flex justify-center bg-surface-container-lowest">
+<button class="w-full py-2 text-label-md font-bold text-primary hover:bg-primary-container/10 rounded-lg transition-colors">
+                        ARXIVNI KO'RISH
+                    </button>
+</div>
+</div>
+<!-- Group Card 4 (Active) -->
+<div class="bg-surface rounded-2xl shadow-sm border border-transparent hover:border-primary-container transition-all overflow-hidden group">
+<div class="p-5 flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 text-[10px] font-bold uppercase tracking-wider">O'qish jarayonida</span>
+<span class="text-label-md text-on-surface-variant">#GR-2042</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors">Web Design (UI/UX)</h3>
+<p class="text-body-md text-on-surface-variant">Figma, Prototype &amp; Research</p>
+</div>
+<button class="p-2 text-outline hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="bg-surface-container-low px-5 py-4 mx-4 rounded-xl border border-outline-variant/30 mb-4">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Dars jadvali</p>
+<p class="text-body-md font-bold text-on-surface">Se / Pay / Shan — 09:00 - 11:00</p>
+</div>
+</div>
+<div class="flex gap-1 justify-between">
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">DU</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">SE</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">CH</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">PA</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant">JU</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-primary text-on-primary">SH</span>
+<span class="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold bg-surface-variant text-on-surface-variant text-error">YA</span>
+</div>
+</div>
+<div class="px-5 pb-5 grid grid-cols-2 gap-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="Close up portrait of a male instructor, creative professional looking, casual modern outfit, standing in a brightly lit digital studio with Apple computers in the background. High contrast, clean, professional look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIVi-8rn4gd0_oqK5ILcCqW1fS8kWK5TEIbt9F68e9MwATEmbHRG566mGindIpaxIyXBAO9GLtk1rTMmrnF6GAvGt-XdW_wWcFoRPp2nSPXuSHVWUb2zwnGy8muOBpPI2cq8j3bWOt4BH3IhQTmOzpHrGBew6M5uc96JKH8I5KoHjgWGQHKtpO8Fwr3ArCDVMnIX-pIgf6MlSfGYx9-ZYBr0MQqqlaacHAjIIyvASKBq56i7RxM41QBBro6mGBCX8HT4RDwCUDoRc"/>
+<div>
+<p class="text-label-md text-on-surface-variant">O'qituvchi</p>
+<p class="text-body-md font-semibold text-on-surface truncate">S. Xolmatov</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">meeting_room</span>
+</div>
+<div>
+<p class="text-label-md text-on-surface-variant">Xona</p>
+<p class="text-body-md font-semibold text-on-surface">Creative-02</p>
+</div>
+</div>
+</div>
+<div class="px-5 py-3 border-t border-outline-variant/30 flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span class="text-body-md font-bold">12/12</span>
+<span class="text-label-md text-error font-bold">Full</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-300"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-400"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-slate-500"></div>
+<div class="w-6 h-6 rounded-full border-2 border-surface bg-primary-container text-white text-[8px] flex items-center justify-center font-bold">+9</div>
+</div>
+</div>
+</div>
+<!-- Add New Group Placeholder -->
+<button class="bg-surface-container-low border-2 border-dashed border-outline-variant rounded-2xl flex flex-col items-center justify-center p-8 group hover:bg-surface-container transition-colors min-h-[400px]">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline group-hover:text-primary group-hover:scale-110 transition-all mb-4 shadow-sm">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface-variant">Yangi guruh qo'shish</h3>
+<p class="text-body-md text-on-surface-variant text-center mt-2 px-6">O'qituvchi, xona va dars vaqtlarini belgilagan holda yangi o'quv guruhini yarating</p>
+</button>
+</div>
+<!-- Weekly Schedule Visualization Sidebar (Drawer style interaction hint) -->
+<div class="mt-12">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Bugun uchun dars jadvali</h3>
+<button class="text-primary font-title-md flex items-center gap-1 hover:underline">
+                    To'liq jadvalni ko'rish
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Schedule Item 1 -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-primary flex items-start gap-4">
+<div class="font-bold text-primary shrink-0">14:00</div>
+<div>
+<h4 class="font-title-md text-on-surface">IELTS Master B04</h4>
+<p class="text-label-md text-on-surface-variant">A. Jumaboyev • Room 12</p>
+</div>
+</div>
+<!-- Schedule Item 2 -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-secondary flex items-start gap-4">
+<div class="font-bold text-secondary shrink-0">15:30</div>
+<div>
+<h4 class="font-title-md text-on-surface">Mathematics Advanced</h4>
+<p class="text-label-md text-on-surface-variant">K. Isroilov • Room 08</p>
+</div>
+</div>
+<!-- Schedule Item 3 -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-tertiary flex items-start gap-4">
+<div class="font-bold text-tertiary shrink-0">17:00</div>
+<div>
+<h4 class="font-title-md text-on-surface">Koreys tili Topik</h4>
+<p class="text-label-md text-on-surface-variant">L. Kim • Room 03</p>
+</div>
+</div>
+<!-- Schedule Item 4 -->
+<div class="bg-surface p-4 rounded-xl shadow-sm border-l-4 border-error flex items-start gap-4">
+<div class="font-bold text-error shrink-0">18:30</div>
+<div>
+<h4 class="font-title-md text-on-surface">Graphic Design</h4>
+<p class="text-label-md text-on-surface-variant">D. Erkinov • Room 05</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-[32px]">group_add</span>
+</button>
+<script>
+        // Micro-interaction for filter button
+        document.querySelector('button.bg-primary-container').addEventListener('click', function() {
+            this.classList.add('scale-95');
+            setTimeout(() => {
+                this.classList.remove('scale-95');
+                alert('Guruhlar muvaffaqiyatli saralandi');
+            }, 150);
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>
