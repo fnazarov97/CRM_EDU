@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/auth-context';
 import type { LoginRequest } from '../types';
 
 const Login: React.FC = () => {
@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     try {
       await login(credentials);
       navigate('/');
-    } catch (err) {
+    } catch {
       setError('Login yoki parol noto\'g\'ri');
     } finally {
       setIsLoading(false);
