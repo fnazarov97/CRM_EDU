@@ -9,6 +9,7 @@ import Courses from './pages/Courses';
 import Groups from './pages/Groups';
 import Attendance from './pages/Attendance';
 import Payments from './pages/Payments';
+import Placeholder from './pages/Placeholder';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 
@@ -28,11 +29,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="flex">
+    <div className="bg-background min-h-screen text-on-surface">
       <Sidebar />
-      <div className="flex-1">
+      <div className="ml-[260px] min-h-screen flex flex-col">
         <Header />
-        <main>{children}</main>
+        <main className="flex-1 p-8">{children}</main>
       </div>
     </div>
   );
@@ -110,6 +111,26 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <Payments />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Placeholder title="Hisobotlar" subtitle="Tahliliy hisobotlar tez orada qo'shiladi." icon="analytics" />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <Placeholder title="Sozlamalar" subtitle="Tizim sozlamalari tez orada qo'shiladi." icon="settings" />
                 </Layout>
               </ProtectedRoute>
             }
